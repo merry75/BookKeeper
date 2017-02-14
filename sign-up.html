@@ -6,13 +6,88 @@
 </head>
 <body>
 	<form class="design-signup">
-	      Username: <input type='text' required placeholder="ben" /> <br>
-	      Email: <input type='email' required placeholder="benjiab@hotmail.com" /> <br>	
-	      Password: <input type='password' /> <br>  
-	      Repeat password: <input type='password' /> <br>
-	      Telephone: <input type="Telephone" name=""><br>
-	      Country: <input type="Country" name=""> <br>
-	      <button type="button">Sign Up</button> 
+	    Username:
+	    <input type="text" id="username" placeholder="Your Name">
+	    <div id="msg"></div>
+	    <br> Email:
+	    <input type="e-mail" placeholder="yourname@email.com">
+	    <br> Password:
+	    <input id="password" type="password">
+	    <div id="msg2"></div>
+	    <br> Repeat password:
+	    <input id="password-confirm" type="password">
+	    <div id="msg3"></div>
+	    <br> Phone Number:
+	    <input id="Phone" type="number">
+	    <div id="msg5"></div>
+	    <br> Country:
+	    <input id="Country" type="text">
+	    <div id="msg4"></div>
+	    <br>
+	    <button type="button" onclick="submitForm();">Submit</button>
+	    <div id="noerror"></div>
 	</form>
+
+	<script type="text/javascript">
+
+	function submitForm() {
+		var usernameElement = document.getElementById("username");
+		var username = usernameElement.value
+
+		if (username.length < 5) {
+			document.getElementById("msg").innerHTML = "username too short";
+			document.getElementById('msg').style.color = "red";	
+		} else {
+			alert("Thank you " + username);
+			document.getElementById("msg").innerHTML = "";
+		}
+
+		var passwordElement = document.getElementById("password");
+		var password = passwordElement.value;
+
+		if (password.length < 6) {
+			document.getElementById("msg2").innerHTML = "password too short";
+			document.getElementById('msg2').style.color = "red";	
+		} else {
+			alert("Thank you " + password);
+			document.getElementById("msg2").innerHTML = "";
+		}
+
+		var passwordconfirm = document.getElementById("password-confirm").value;
+
+		if (password !== passwordconfirm) {
+			document.getElementById("msg3").innerHTML = "your password doesn't match";
+			document.getElementById('msg3').style.color = "red";	
+		}
+
+		var country = document.getElementById("Country").value;
+		if (country !== "USA" && country !== "Israel")  {
+			document.getElementById("msg4").innerHTML = "must be either USA or Israel";
+			document.getElementById('msg4').style.color = "red";	
+		} else {
+			document.getElementById("msg4").innerHTML = "";
+		}
+
+		var phone = document.getElementById("Phone").value;
+
+		if (phone.length < 9) {
+			document.getElementById("msg5").innerHTML = "your phone number is not valid";
+			document.getElementById('msg5').style.color = "red";	
+		}
+
+		var msg = document.getElementById("msg").innerHTML;
+		var msg2 = document.getElementById("msg2").innerHTML;
+		var msg3 = document.getElementById("msg3").innerHTML;
+		var msg4 = document.getElementById("msg4").innerHTML;
+		var msg5 = document.getElementById("msg5").innerHTML;
+
+
+		if (msg === "" && msg2 === "" && msg3 === "" && msg4 === "" && msg5 === "") {
+			document.getElementById("noerror").innerHTML = "No Error";
+			document.getElementById("noerror").style.color = "green";
+		}
+	}
+
+	</script>
 </body>
 </html>
